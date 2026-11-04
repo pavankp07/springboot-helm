@@ -15,10 +15,13 @@ spec:
         {{- include "springboot-app.selectorLabels" . | nindent 8 }}
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        {{- if .Values.secret.enabled }}
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+        {{- end }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ include "springboot-app.image" . }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
@@ -28,7 +31,11 @@ spec:
               value: {{ .Values.springProfile | quote }}
           envFrom:
             - configMapRef:
-                name: {{ include "springboot-app.fullname" . }}
+                name: {{ include "springboot-app.configName" . }}
+            {{- if .Values.secret.enabled }}
+            - secretRef:
+                name: {{ include "springboot-app.secretName" . }}
+            {{- end }}
           readinessProbe:
             httpGet:
               path: {{ .Values.probes.path }}

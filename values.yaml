@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: nginx
-  tag: "1.27"
+  tag: ""
   pullPolicy: IfNotPresent
 
 springProfile: default
@@ -12,8 +12,27 @@ service:
   port: 80
   targetPort: 80
 
+# Non-sensitive settings -> ConfigMap
 config:
   LOGGING_LEVEL_ROOT: "INFO"
+
+# Sensitive settings -> Secret (placeholders only, never real passwords)
+secret:
+  enabled: true
+  data:
+    SPRING_DATASOURCE_USERNAME: "appuser"
+    SPRING_DATASOURCE_PASSWORD: "change-me"
+
+ingress:
+  enabled: false
+  className: nginx
+  annotations: {}
+  hosts:
+    - host: springboot.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
 
 resources:
   requests:

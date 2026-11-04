@@ -9,6 +9,19 @@ config:
   LOGGING_LEVEL_ROOT: "INFO"
   SPRING_DATASOURCE_URL: "jdbc:postgresql://qa-db:5432/appdb"
 
+secret:
+  data:
+    SPRING_DATASOURCE_USERNAME: "qa_user"
+    SPRING_DATASOURCE_PASSWORD: "qa-placeholder"
+
+ingress:
+  enabled: true
+  hosts:
+    - host: qa.springboot.local
+      paths:
+        - path: /
+          pathType: Prefix
+
 resources:
   requests:
     cpu: 200m

@@ -9,6 +9,19 @@ config:
   LOGGING_LEVEL_ROOT: "WARN"
   SPRING_DATASOURCE_URL: "jdbc:postgresql://prod-db:5432/appdb"
 
+secret:
+  data:
+    SPRING_DATASOURCE_USERNAME: "prod_user"
+    SPRING_DATASOURCE_PASSWORD: "prod-placeholder"
+
+ingress:
+  enabled: true
+  hosts:
+    - host: springboot.local
+      paths:
+        - path: /
+          pathType: Prefix
+
 resources:
   requests:
     cpu: 500m
