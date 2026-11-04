@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: nginx
-  tag: ""
+  tag: "1.27"
   pullPolicy: IfNotPresent
 
 springProfile: default
