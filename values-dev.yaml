@@ -1,0 +1,18 @@
+replicaCount: 1
+
+image:
+  tag: "1.27"
+
+springProfile: dev
+
+config:
+  LOGGING_LEVEL_ROOT: "DEBUG"
+  SPRING_DATASOURCE_URL: "jdbc:postgresql://dev-db:5432/appdb"
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 300m
+    memory: 384Mi

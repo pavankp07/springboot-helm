@@ -1,0 +1,18 @@
+replicaCount: 3
+
+image:
+  tag: "1.27"
+
+springProfile: prod
+
+config:
+  LOGGING_LEVEL_ROOT: "WARN"
+  SPRING_DATASOURCE_URL: "jdbc:postgresql://prod-db:5432/appdb"
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 768Mi
+  limits:
+    cpu: "1"
+    memory: 1Gi

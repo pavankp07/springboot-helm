@@ -1,0 +1,18 @@
+replicaCount: 2
+
+image:
+  tag: "1.0.0-rc1"
+
+springProfile: qa
+
+config:
+  LOGGING_LEVEL_ROOT: "INFO"
+  SPRING_DATASOURCE_URL: "jdbc:postgresql://qa-db:5432/appdb"
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 384Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
