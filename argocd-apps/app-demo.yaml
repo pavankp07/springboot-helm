@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: springboot-demo
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/pavankp07/springboot-helm.git
+    targetRevision: main
+    path: .
+    helm:
+      releaseName: demo
+      valueFiles:
+        - values-dev.yaml
+      parameters:
+        - name: replicaCount
+          value: "1"
+        - name: ingress.enabled
+          value: "false"
+        - name: resources.requests.memory
+          value: "64Mi"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: demo
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
