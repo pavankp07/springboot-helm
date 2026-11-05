@@ -15,7 +15,7 @@ secret:
     SPRING_DATASOURCE_PASSWORD: "dev-placeholder"
 
 ingress:
-  enabled: true
+  enabled: false
   hosts:
     - host: dev.springboot.local
       paths:

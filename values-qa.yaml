@@ -15,7 +15,7 @@ secret:
     SPRING_DATASOURCE_PASSWORD: "qa-placeholder"
 
 ingress:
-  enabled: true
+  enabled: false
   hosts:
     - host: qa.springboot.local
       paths:

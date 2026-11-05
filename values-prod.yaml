@@ -15,7 +15,7 @@ secret:
     SPRING_DATASOURCE_PASSWORD: "prod-placeholder"
 
 ingress:
-  enabled: true
+  enabled: false
   hosts:
     - host: springboot.local
       paths:

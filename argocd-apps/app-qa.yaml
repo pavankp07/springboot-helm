@@ -4,6 +4,7 @@ metadata:
   name: springboot-qa
   namespace: argocd
 spec:
+  ignoreDifferences: []
   project: default
   source:
     repoURL: https://github.com/pavankp07/springboot-helm.git
